@@ -4,7 +4,7 @@ go 1.21
 
 toolchain go1.23.2
 
-replace github.com/lmatte7/gomesh => github.com/ra014630/goMesh v2.0
+replace github.com/lmatte7/gomesh => github.com/ra014630/gomesh v1.0.0
 
 require (
 	github.com/jacobsa/go-serial v0.0.0-20180131005756-15cf729a72d4
