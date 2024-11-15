@@ -228,13 +228,8 @@ func (r *Radio) GetRadioInfo() (radioResponses []*pb.FromRadio, err error) {
 
 }
 
-// SendTextMessage sends a free form text message to other radios
-func (r *Radio) SendTextMessage(message string, to int64, channel int64) error {
-	return r.SendBytesMessage([]byte(message), to, channel)
-}
-
 // SendBytesMessage sends a byte array message to other radios
-func (r *Radio) SendBytesMessage(message []byte, to int64, channel int64) error {
+func (r *Radio) SendTextMessage(message string, to int64, channel int64) error {
 	var address int64
 	if to == 0 {
 		address = broadcastNum
@@ -259,7 +254,7 @@ func (r *Radio) SendBytesMessage(message []byte, to int64, channel int64) error 
 				Channel: uint32(channel),
 				PayloadVariant: &pb.MeshPacket_Decoded{
 					Decoded: &pb.Data{
-						Payload: message,
+						Payload: []byte(message),
 						Portnum: pb.PortNum_TEXT_MESSAGE_APP,
 					},
 				},
